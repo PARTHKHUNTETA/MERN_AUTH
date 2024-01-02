@@ -101,17 +101,19 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             user.password = req.body.password;
         }
         const updatedUser = await user.save()
+
+        res.status(200).send({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email
+        })
     } else {
         res.status(404);
         throw new Error("No user found");
     }
 
 
-    res.status(200).send({
-        _id: updatedUser._id,
-        name: updatedUser.name,
-        email: updatedUser.email
-    })
+
 })
 
 export {

@@ -14,12 +14,17 @@ import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
 import store from "./store.js";
 import { Provider } from "react-redux";
+import ProfileScreen from "./screens/ProfileScreen.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index path="/" element={<HomeScreen />} />
-      <Route index path="/login" element={<LoginScreen />} />
-      <Route index path="/register" element={<RegisterScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/profile" element={<ProfileScreen />} />
+      </Route>
     </Route>
   )
 );
